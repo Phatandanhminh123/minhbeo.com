@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kết Bạn Zalo</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background-color: #f0f4f8;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .zalo-card {
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+            text-align: center;
+            max-width: 320px;
+            width: 100%;
+        }
+        .zalo-title {
+            color: #333333;
+            font-size: 20px;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+        .qr-container {
+            background: #f7f9fa;
+            padding: 15px;
+            border-radius: 12px;
+            display: inline-block;
+            margin-bottom: 20px;
+            border: 1px solid #e1e8ed;
+        }
+        .qr-code {
+            width: 200px;
+            height: 200px;
+            display: block;
+        }
+        .qr-hint {
+            font-size: 13px;
+            color: #666666;
+            margin-top: 8px;
+            margin-bottom: 0;
+        }
+        .zalo-button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #0068ff;
+            color: #ffffff;
+            text-decoration: none;
+            padding: 12px 20px;
+            border-radius: 25px;
+            font-size: 16px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0, 104, 255, 0.2);
+        }
+        .zalo-button:hover {
+            background-color: #0052cc;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 18px rgba(0, 104, 255, 0.3);
+        }
+        .zalo-icon {
+            width: 24px;
+            height: 24px;
+            margin-right: 8px;
+            background-color: #ffffff;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #0068ff;
+            font-family: 'Arial Black', sans-serif;
+            font-size: 12px;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="zalo-card">
+        <div class="zalo-title">Kết bạn qua Zalo</div>
+        
+        <!-- Khu vực hiển thị mã QR tự động tạo từ link của bạn -->
+        <div class="qr-container">
+            <img class="qr-code" src="https://qrserver.com" alt="Mã QR Zalo">
+            <p class="qr-hint">Quét mã để mở Zalo</p>
+        </div>
+
+        <!-- Nút bấm trực tiếp cho người dùng điện thoại -->
+        <a href="https://zaloapp.com" target="_blank" class="zalo-button">
+            <span class="zalo-icon">Z</span>
+            Bấm vào đây để kết bạn
+        </a>
+    </div>
+
+</body>
+</html>

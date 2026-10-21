@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kết Bạn Zalo</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background-color: #f0f4f8;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        /* Giao diện hộp nhập mật khẩu */
+        .password-card {
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+            text-align: center;
+            max-width: 320px;
+            width: 100%;
+        }
+        .password-card h3 {
+            margin-top: 0;
+            color: #333;
+        }
+        .password-input {
+            width: 80%;
+            padding: 10px;
+            font-size: 16px;
+            border: 2px solid #e1e8ed;
+            border-radius: 8px;
+            text-align: center;
+            margin-bottom: 15px;
+            outline: none;
+        }
+        .password-input:focus {
+            border-color: #0068ff;
+        }
+        .submit-btn {
+            background-color: #0068ff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            width: 87%;
+        }
+        .submit-btn:hover {
+            background-color: #0052cc;
+        }
+        .error-msg {
+            color: #ff3333;
+            font-size: 14px;
+            margin-top: 10px;
+            display: none;
+        }
+
+        /* Giao diện nội dung Zalo (Ẩn lúc đầu) */
+        .zalo-card {
+            display: none; /* Ẩn mặc định */
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+            text-align: center;
+            max-width: 320px;
+            width: 100%;
+        }
+        .zalo-title {
+            color: #333333;
+            font-size: 20px;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+        .qr-container {
+            background: #f7f9fa;
+            padding: 15px;
+            border-radius: 12px;
+            display: inline-block;
+            margin-bottom: 20px;
+            border: 1px solid #e1e8ed;
+        }
+        .qr-code {
+            width: 200px;
+            height: 200px;
+            display: block;
+        }
+        .qr-hint {
+            font-size: 13px;
+            color: #666666;
+            margin-top: 8px;
+            margin-bottom: 0;
+        }
+        .zalo-button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #0068ff;
+            color: #ffffff;
+            text-decoration: none;
+            padding: 12px 20px;
+            border-radius: 25px;
+            font-size: 16px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0, 104, 255, 0.2);
+        }
+        .zalo-button:hover {
+            background-color: #0052cc;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 18px rgba(0, 104, 255, 0.3);
+        }
+        .zalo-icon {
+            width: 24px;
+            height: 24px;
+            margin-right: 8px;
+            background-color: #ffffff;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #0068ff;
+            font-family: 'Arial Black', sans-serif;
+            font-size: 12px;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- PHẦN 1: Form nhập mật khẩu bảo mật -->
+    <div class="password-card" id="lockScreen">
+        <h3>Nội dung bảo mật</h3>
+        <p style="color: #666; font-size: 14px; margin-bottom: 20px;">Vui lòng nhập mật khẩu để xem thông tin Zalo.</p>
+        <input type="password" class="password-input" id="passwordInput" placeholder="Nhập mã pin tại đây...">
+        <button class="submit-btn" onclick="checkPassword()">Xác nhận</button>
+        <div class="error-msg" id="errorMsg">Mật khẩu không chính xác, vui lòng thử lại!</div>
+    </div>
+
+    <!-- PHẦN 2: Nội dung Zalo ẩn bên trong -->
+    <div class="zalo-card" id="zaloContent">
+        <div class="zalo-title">Kết bạn qua Zalo</div>
+        
+        <div class="qr-container">
+            <img class="qr-code" src="https://qrserver.com" alt="Mã QR Zalo">
+            <p class="qr-hint">Quét mã để mở Zalo</p>
+        </div>
+
+        <a href="https://zaloapp.com" target="_blank" class="zalo-button">
+            <span class="zalo-icon">Z</span>
+            Bấm vào đây để kết bạn
+        </a>
+    </div>
+
+    <script>
+        // Hàm kiểm tra mật khẩu
+        function checkPassword() {
+            var input = document.getElementById("passwordInput").value;
+            var lockScreen = document.getElementById("lockScreen");
+            var zaloContent = document.getElementById("zaloContent");
+            var errorMsg = document.getElementById("errorMsg");
+
+            // Kiểm tra nếu pass đúng là 2105
+            if (input === "2105") {
+                lockScreen.style.display = "none";     // Ẩn hộp mật khẩu
+                zaloContent.style.display = "block";   // Hiện thông tin Zalo
+            } else {
+                errorMsg.style.display = "block";     // Hiện thông báo lỗi
+                document.getElementById("passwordInput").value = ""; // Xoá chữ đã nhập sai
+            }
+        }
+
+        // Hỗ trợ người dùng bấm nút Enter trên bàn phím để xác nhận nhanh
+        document.getElementById("passwordInput").addEventListener("keypress", function(event) {
+            if (event.key === "Enter") {
+                checkPassword();
+            }
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>⚡ DUOLINGO CYBER QUEST - JOIN THE SQUAD ⚡</title>
+    <style>
+        /* Toàn bộ thiết lập nền tảng */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background: radial-gradient(circle at center, #0f172a 0%, #020617 100%);
+            color: #f8fafc;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow-x: hidden;
+            padding: 20px;
+        }
+
+        /* Khung chứa hiệu ứng Neon */
+        .neon-wrapper {
+            position: relative;
+            background: rgba(15, 23, 42, 0.8);
+            border: 2px solid #58cc02;
+            border-radius: 24px;
+            padding: 40px 30px;
+            max-width: 500px;
+            width: 100%;
+            text-align: center;
+            box-shadow: 0 0 20px rgba(88, 204, 2, 0.2),
+                        inset 0 0 15px rgba(88, 204, 2, 0.1);
+            backdrop-filter: blur(12px);
+            animation: borderPulse 4s infinite alternate;
+        }
+
+        /* Hiệu ứng tia sét/hào quang phía sau */
+        .neon-wrapper::before {
+            content: '';
+            position: absolute;
+            top: -2px; left: -2px; right: -2px; bottom: -2px;
+            background: linear-gradient(45deg, #58cc02, #3b82f6, #22c55e, #58cc02);
+            border-radius: 24px;
+            z-index: -1;
+            background-size: 400%;
+            filter: blur(25px);
+            opacity: 0.4;
+            animation: steam 20s linear infinite;
+        }
+
+        /* Avatar Cú xanh hoạt họa bay lắc */
+        .avatar-container {
+            position: relative;
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 25px;
+            animation: float 3s ease-in-out infinite;
+        }
+        .owl-avatar {
+            width: 100%;
+            height: 100%;
+            background: #58cc02;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 55px;
+            box-shadow: 0 0 30px rgba(88, 204, 2, 0.6);
+            border: 4px solid #ffffff;
+        }
+        .badge {
+            position: absolute;
+            bottom: -5px;
+            right: -5px;
+            background: #ef4444;
+            color: white;
+            font-size: 11px;
+            font-weight: bold;
+            padding: 4px 10px;
+            border-radius: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 0 10px rgba(239, 68, 68, 0.8);
+            border: 2px solid #020617;
+        }
+
+        /* Phần chữ Header */
+        h1 {
+            font-size: 28px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+            background: linear-gradient(to right, #ffffff 30%, #a3e635 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 10px rgba(255,255,255,0.1);
+        }
+
+        /* Thẻ thống kê ngầu kiểu RPG game */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 11fr);
+            gap: 12px;
+            margin: 25px 0;
+        }
+        .stat-box {
+            background: rgba(30, 41, 59, 0.5);
+            border: 1px solid rgba(255,255,255,0.1);
+            padding: 12px;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+        .stat-box:hover {
+            border-color: #58cc02;
+            background: rgba(88, 204, 2, 0.05);
+            transform: translateY(-2px);
+        }
+        .stat-val {
+            display: block;
+            font-size: 18px;
+            font-weight: bold;
+            color: #a3e635;
+        }
+        .stat-lbl {
+            font-size: 11px;
+            color: #94a3b8;
+            text-transform: uppercase;
+            margin-top: 3px;
+        }
+
+        /* Đoạn văn mô tả */
+        p.description {
+            font-size: 15px;
+            color: #cbd5e1;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+        span.highlight {
+            color: #58cc02;
+            font-weight: bold;
+            text-shadow: 0 0 8px rgba(88, 204, 2, 0.4);
+        }
+
+        /* NÚT BẤM CYBERPUNK SIÊU CẤP */
+        .btn-cyber {
+            position: relative;
+            display: inline-block;
+            width: 100%;
+            padding: 18px;
+            color: #020617;
+            background: #58cc02;
+            font-size: 18px;
+            font-weight: 800;
+            text-transform: uppercase;
+            text-decoration: none;
+            letter-spacing: 2px;
+            border-radius: 16px;
+            box-shadow: 0 6px 0 #3b82f6, 0 15px 25px rgba(88, 204, 2, 0.4);
+            transition: transform 0.1s, box-shadow 0.1s;
+            overflow: hidden;
+        }
+        .btn-cyber::after {
+            content: '';
+            position: absolute;
+            top: 0; left: -50%; width: 200%; height: 100%;
+            background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.4) 50%, rgba(255,255,255,0) 100%);
+            transform: skewX(-25deg);
+            transition: 0.75s;
+            opacity: 0;
+        }
+        .btn-cyber:hover::after {
+            left: 120%;
+            opacity: 1;
+        }
+        .btn-cyber:active {
+            transform: translateY(6px);
+            box-shadow: 0 0px 0 #3b82f6, 0 5px 10px rgba(88, 204, 2, 0.3);
+        }
+
+        /* HỆ THỐNG ANIMATION HOẠT ẢNH */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        @keyframes borderPulse {
+            0% { border-color: #58cc02; box-shadow: 0 0 20px rgba(88, 204, 2, 0.2); }
+            50% { border-color: #3b82f6; box-shadow: 0 0 30px rgba(59, 130, 246, 0.4); }
+            100% { border-color: #58cc02; box-shadow: 0 0 20px rgba(88, 204, 2, 0.2); }
+        }
+        @keyframes steam {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="neon-wrapper">
+        <!-- Khu vực Avatar -->
+        <div class="avatar-container">
+            <div class="owl-avatar">🦉</div>
+            <div class="badge">PRO INVITE</div>
+        </div>
+
+        <!-- Tiêu đề chính -->
+        <h1>LEVEL UP YOUR SKILLS</h1>
+
+        <!-- Đoạn văn mô tả chất chơi -->
+        <p class="description">
+            Đừng lãng phí thời gian lướt mạng vô bổ. Tham gia cùng đội của tôi trên <span class="highlight">Duolingo</span> để biến việc học ngoại ngữ thành một đấu trường rực lửa. Miễn phí, gây nghiện và <span class="highlight">hiệu quả 100%</span>.
+        </p>
+
+        <!-- Thẻ bảng chỉ số (RPG Stats) -->
+        <div class="stats-grid">
+            <div class="stat-box">
+                <span class="stat-val">34 GIỜ</span>
+                <span class="stat-lbl">= 1 Học Kỳ Đại Học</span>
+            </div>
+            <div class="stat-box">
+                <span class="stat-val">100%</span>
+                <span class="stat-lbl">Gamification vui nhộn</span>
+            </div>
+            <div class="stat-box">
+                <span class="stat-val">FREE</span>
+                <span class="stat-lbl">Mãi Mãi Không Tốn Phí</span>
+            </div>
+            <div class="stat-box">
+                <span class="stat-val">🔥 LIVE</span>
+                <span class="stat-lbl">Duy trì Chuỗi Streak</span>
+            </div>
+        </div>
+
+        <!-- Siêu nút bấm kích hoạt đường link -->
+        <a class="btn-cyber" href="https://duolingo.com" target="_blank">
+            KÍCH HOẠT LỜI MỜI 🚀
+        </a>
+    </div>
+
+</body>
+  </html>
+  
